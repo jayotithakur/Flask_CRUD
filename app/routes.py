@@ -4,9 +4,6 @@ from app import app, db
 from app.models import Entry
 from datetime import datetime
 
-
-jedi = "of the jedi"
-
 # Initialize CSRF protection
 csrf = CSRFProtect(app)
 
@@ -78,9 +75,7 @@ def update(student_id):
 
     return render_template('update.html', entry=entry, csrf_token=csrf.generate_csrf())
 
-
-
-@app.route('/delete/<int:student_id>', methods=['DELETE'])
+@app.route('/delete/<int:student_id>', methods=['DELETE', 'GET'])
 def delete(student_id):
     entry = Entry.query.get(student_id)
 
@@ -90,8 +85,3 @@ def delete(student_id):
     db.session.delete(entry)
     db.session.commit()
     return redirect('/index')
-
-
-# @app.errorhandler(Exception)
-# def error_page(e):
-#     return "of the jedi"

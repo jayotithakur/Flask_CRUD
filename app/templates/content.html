@@ -9,6 +9,9 @@
             <div class="card">
                 <div class="card-body">
                     <form action="/add" method="post">
+                        <!-- Add CSRF token as hidden input field -->
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
                         <div class="form-group">
                             <input class="form-control" type="text" name="first_name" placeholder="First Name" required>
                         </div>
@@ -67,8 +70,3 @@
 </div>
 
 {% endblock %}
-
-
-
-
-
